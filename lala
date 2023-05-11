@@ -1,0 +1,176 @@
+package com.example.appmapas;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+
+import android.widget.TextView;
+
+
+import com.github.chrisbanes.photoview.PhotoView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    public TextInputEditText idestadinho;
+    public TextView nome;
+    public TextView idpopulacao;
+    public TextView idarea;
+    public TextView ididh;
+    public TextView idmunicipios;
+    public PhotoView IDmapa;
+
+    private RadioButton radioButtonGO;
+    private RadioButton radioButtonMT;
+    private RadioButton radioButtonMS;
+    private RadioButton radioButtonDF;
+    private RadioGroup estados;
+
+    private CheckBox checkBoxEstado;
+    private CheckBox checkBoxArea;
+    private CheckBox checkBoxIDH;
+    private CheckBox checkBoxMun;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        nome = findViewById(R.id.nome);
+
+        idestadinho = findViewById(R.id.entrada);
+        idpopulacao = findViewById(R.id.idpopulacao);
+        idarea = findViewById(R.id.idarea);
+        ididh = findViewById(R.id.ididh);
+        idmunicipios = findViewById(R.id.idmunicipios);
+        IDmapa = findViewById(R.id.IDmapa);
+
+        radioButtonGO = findViewById(R.id.radioButtonGO);
+        radioButtonMT = findViewById(R.id.radioButtonMT);
+        radioButtonMS = findViewById(R.id.radioButtonMS);
+        radioButtonDF = findViewById(R.id.radioButtonDF);
+        estados = findViewById(R.id.estados);
+
+        checkBoxEstado = findViewById(R.id.checkBoxEstado);
+        checkBoxPopulacao = findViewById(R.id.checkBoxPopulacao);
+        checkBoxArea = findViewById(R.id.checkBoxArea);
+        checkBoxIDH = findViewById(R.id.checkBoxid);
+        checkBoxMun = findViewById(R.id.checkBoxnum_m);
+
+        imagemEstado.setImageResource(R.drawable.tresestados);
+
+        radioButtonListener();
+
+    }
+    public void radioButtonListener(){
+        estados.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+        @verride
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+            if (checkedId == R.id.radioButtonDF) {
+
+                imagemEstado.setImageResource(R.drawable.DF);
+
+                checkboxDF();
+
+            } else if (checkedId == R.id.radioButtonGO){
+                imagemEstado.setImageResource(R.drawable.GO);
+
+                checkboxGO();
+
+            } else if (checkedId == R.id.radioButtonMT){
+                imagemEstado.setImageResource(R.drawable.MT);
+
+                checkboxMT();
+            }
+            } else if (checkedId == R.id.radioButtonMS){
+                imagemEstado.setImageResource(R.drawable.MS);
+
+                checkboxMS();
+            }
+
+            }
+        }
+        else if (estado.equals("goias")){
+
+            nome.setText("Goiás");
+            nome.setVisibility(View.VISIBLE);
+
+            IDmapa.setImageResource(R.drawable.mapago);
+            IDmapa.setVisibility(View.VISIBLE);
+
+            idpopulacao.setText("População: 6,523 milhões.");
+            idarea.setText("Area: 340.086 km².");
+            ididh.setText("IDH: 0,735.");
+            idmunicipios.setText("Municipios: 246.");
+
+            idpopulacao.setVisibility(View.VISIBLE);
+            idarea.setVisibility(View.VISIBLE);
+            ididh.setVisibility(View.VISIBLE);
+            idmunicipios.setVisibility(View.VISIBLE);
+
+        }
+
+        public void checkboxMS() {
+            String rr = "";
+            if (checkBoxEstado.isChecked()) {
+                rr += "Estado: Mato Grosso do Sul \n";
+            }
+            if (checkBoxArea.isChecked()){
+                rr += "Area: 357.125 km².\n";
+            } if (checkBoxPop.isChecked()){
+                rr += "População: 11.597.484 hab \n";
+            } if (checkBoxDensi.isChecked()){
+                rr += "Densidade: 52,40 hab/km2 \n";
+            } if (checkBoxid.isChecked()){
+                rr += "IDH: 0,749 \n";
+            } if (checkBoxnum_m.isChecked()){
+                rr += "municipios: 284 \n";
+            }
+            Resultado.setText(rr);
+                    IDmapa.setImageResource(R.drawable.mapams);
+                    IDmapa.setVisibility(View.VISIBLE);
+
+
+                    idpopulacao.setText("População: 2,62 milhões.");
+                    idarea.setText("Area: 357.125 km².");
+                    ididh.setText("IDH: 0,729.");
+                    idmunicipios.setText("Municipios: 79.");
+
+                    idpopulacao.setVisibility(View.VISIBLE);
+                    idarea.setVisibility(View.VISIBLE);
+                    ididh.setVisibility(View.VISIBLE);
+                    idmunicipios.setVisibility(View.VISIBLE);
+
+                }
+        }
+        else if (estado.equals("mato grosso")){
+
+            nome.setText("Mato Grosso");
+            nome.setVisibility(View.VISIBLE);
+
+            IDmapa.setImageResource(R.drawable.mapams);
+            IDmapa.setVisibility(View.VISIBLE);
+
+
+            idpopulacao.setText("População: 3,224 milhões.");
+            idarea.setText("Area: 903.357 km².");
+            ididh.setText("IDH: 0.773.");
+            idmunicipios.setText("Municipios: 141.");
+
+            idpopulacao.setVisibility(View.VISIBLE);
+            idarea.setVisibility(View.VISIBLE);
+            ididh.setVisibility(View.VISIBLE);
+            idmunicipios.setVisibility(View.VISIBLE);
+
+        }
+        else{
+            nome.setText("erro");
+            nome.setVisibility(View.VISIBLE);
+        }
+    }
+}
